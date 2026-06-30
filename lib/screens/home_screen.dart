@@ -878,6 +878,10 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
         setState(() => _currentIndex = index);
         if (index == 0) {
           _intelligenceKey.currentState?.refresh();
+        } else if (index == (_canGenerate ? 4 : 3)) {
+          // Entering Profile: pull fresh user data so the usage stats reflect
+          // generate/verify/bias actions taken since the app opened.
+          context.read<AuthProvider>().refreshUser();
         }
       },
       behavior: HitTestBehavior.opaque,
