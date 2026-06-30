@@ -1,0 +1,12 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    # The theme uses a runtime-swappable palette (see AppColors / app_theme.dart),
+    # so color-bearing widgets intentionally avoid `const` to repaint on a
+    # light/dark switch. These const lints are therefore disabled project-wide.
+    prefer_const_constructors: false
+    prefer_const_literals_to_create_immutables: false
+    prefer_const_constructors_in_immutables: false
+    prefer_const_declarations: false
+    avoid_print: false
