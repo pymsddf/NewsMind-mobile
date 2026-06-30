@@ -6,6 +6,7 @@ import '../models/verification_model.dart';
 import '../models/bias_model.dart';
 import '../widgets/vector_card.dart';
 import '../utils/share_util.dart';
+import '../utils/title_format.dart';
 import 'score_indicator.dart';
 import 'markdown_text.dart';
 
@@ -207,11 +208,12 @@ class InlineVerificationResult extends StatelessWidget {
                     SizedBox(width: 8),
                     Text('Verification Result',
                         style: TextStyle(
-                            color: AppTheme.textPrimary, fontWeight: FontWeight.bold)),
+                            color: AppTheme.textPrimary,
+                            fontWeight: FontWeight.bold)),
                     Spacer(),
                     Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 4),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                       decoration: BoxDecoration(
                         color: verificationResult.verdictColor
                             .withValues(alpha: 0.1),
@@ -285,15 +287,13 @@ class InlineVerificationResult extends StatelessWidget {
                       style:
                           TextStyle(color: AppTheme.textMuted, fontSize: 11)),
                   SizedBox(height: 4),
-                  ...verificationResult.evidence
-                      .take(2)
-                      .map((src) => Text(
-                            '• ${src.title}${src.domain != null ? ' (${src.domain})' : ''}',
-                            style: TextStyle(
-                                color: AppTheme.textSecondary, fontSize: 11),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          )),
+                  ...verificationResult.evidence.take(2).map((src) => Text(
+                        '• ${src.title}${src.domain != null ? ' (${src.domain})' : ''}',
+                        style: TextStyle(
+                            color: AppTheme.textSecondary, fontSize: 11),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      )),
                 ],
                 SizedBox(height: 12),
                 Divider(color: AppTheme.borderColor),
@@ -344,11 +344,11 @@ class InlineBiasResult extends StatelessWidget {
                 SizedBox(width: 8),
                 Text('Bias Analysis',
                     style: TextStyle(
-                        color: AppTheme.textPrimary, fontWeight: FontWeight.bold)),
+                        color: AppTheme.textPrimary,
+                        fontWeight: FontWeight.bold)),
                 Spacer(),
                 Container(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(
                     color: biasResult.overallBias.color.withValues(alpha: 0.1),
                     border: Border.all(
@@ -408,16 +408,13 @@ class InlineBiasResult extends StatelessWidget {
                             style: TextStyle(
                                 color: AppTheme.textMuted, fontSize: 11)),
                         SizedBox(height: 4),
-                        ...biasResult.keyFindings
-                            .take(2)
-                            .map((finding) => Text(
-                                  '• $finding',
-                                  style: TextStyle(
-                                      color: AppTheme.textSecondary,
-                                      fontSize: 12),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                )),
+                        ...biasResult.keyFindings.take(2).map((finding) => Text(
+                              '• $finding',
+                              style: TextStyle(
+                                  color: AppTheme.textSecondary, fontSize: 12),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            )),
                       ],
                     ],
                   ),
@@ -477,8 +474,7 @@ class GeneratedArticleCard extends StatelessWidget {
           Row(
             children: [
               Container(
-                padding:
-                    EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                 decoration: BoxDecoration(
                   gradient: AppTheme.primaryGradient,
                 ),
@@ -519,12 +515,13 @@ class GeneratedArticleCard extends StatelessWidget {
           ),
           SizedBox(height: 12),
 
-          // Title
-          if (article.title != null)
+          // Title — strip any markdown so a history-stored markdown title
+          // (e.g. "## Foo ### I") doesn't render as literal hashes.
+          if (cleanTitle(article.title).isNotEmpty)
             Padding(
               padding: EdgeInsets.only(bottom: 12),
               child: Text(
-                article.title!,
+                cleanTitle(article.title),
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w700,
@@ -535,8 +532,7 @@ class GeneratedArticleCard extends StatelessWidget {
             ),
 
           // Content (markdown-rendered: headings, bold, lists, quotes)
-          if (article.content != null)
-            MarkdownText(article.content!),
+          if (article.content != null) MarkdownText(article.content!),
 
           if (article.wordCount != null) ...[
             SizedBox(height: 16),

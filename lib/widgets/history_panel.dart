@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../theme/intelligence_design_system.dart';
 import '../services/user_service.dart';
+import '../utils/title_format.dart';
 
 class HistoryPanel extends StatefulWidget {
   final VoidCallback onClose;
@@ -274,8 +275,7 @@ class _HistoryPanelState extends State<HistoryPanel>
 
   Widget _buildTabBar() {
     return Container(
-      margin:
-          EdgeInsets.symmetric(horizontal: IntelligenceSpacing.standard),
+      margin: EdgeInsets.symmetric(horizontal: IntelligenceSpacing.standard),
       decoration: BoxDecoration(
         color: IntelligenceColors.surfaceDark,
         border: Border.all(
@@ -511,9 +511,9 @@ class _HistoryPanelState extends State<HistoryPanel>
                   ),
                   SizedBox(height: IntelligenceSpacing.standard),
 
-                  // Query/Title
+                  // Query/Title — strip any markdown so "## …" titles read clean
                   Text(
-                    query.toString(),
+                    cleanTitle(query.toString()),
                     style: AppTheme.textTheme.bodyLarge?.copyWith(
                       fontSize: IntelligenceTypography.bodyMd,
                       fontWeight: FontWeight.w600,
@@ -527,7 +527,7 @@ class _HistoryPanelState extends State<HistoryPanel>
                   if (preview.toString().isNotEmpty) ...[
                     SizedBox(height: IntelligenceSpacing.compact),
                     Text(
-                      preview.toString().replaceAll('\n', ' ').trim(),
+                      stripMarkdown(preview.toString()),
                       style: AppTheme.textTheme.labelMedium?.copyWith(
                         fontSize: IntelligenceTypography.monoSm,
                         color: IntelligenceColors.secondaryTextGrey,
@@ -550,11 +550,11 @@ class _HistoryPanelState extends State<HistoryPanel>
     widget.onNavigate(item);
   }
 
-
-
   Color _getColorForType(String type) {
     type = type.toLowerCase();
-    if (type.contains('gen') || type.contains('trans') || type.contains('news')) {
+    if (type.contains('gen') ||
+        type.contains('trans') ||
+        type.contains('news')) {
       return IntelligenceColors.cyberBlue;
     }
     if (type.contains('fact') || type.contains('verif')) {
@@ -566,7 +566,9 @@ class _HistoryPanelState extends State<HistoryPanel>
 
   String _getDisplayNameForType(String type) {
     type = type.toLowerCase();
-    if (type.contains('gen') || type.contains('trans') || type.contains('news')) {
+    if (type.contains('gen') ||
+        type.contains('trans') ||
+        type.contains('news')) {
       return 'Generation';
     }
     if (type.contains('fact') || type.contains('verif')) return 'Verification';

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../config/api_config.dart';
 import '../models/user_model.dart';
 import '../services/api_service.dart';
 import '../services/auth_service.dart';
@@ -43,6 +44,19 @@ class AuthProvider extends ChangeNotifier {
     _isLoggedIn = ApiService.isLoggedIn;
 
     if (_isLoggedIn) {
+      // Validate the stored token with the server. A locally-present token is
+      // not proof of a live session — it can be expired or invalidated
+      // (sessionVersion bump). If the server DEFINITIVELY rejects it, clear it
+      // and route to login instead of trapping the user in a logged-in-but-
+      // unauthorized state (couldn't save topics, stuck on onboarding, etc.).
+      if (await _tokenDefinitelyInvalid()) {
+        await AuthService.logout();
+        _isLoggedIn = false;
+        _user = null;
+        notifyListeners();
+        return;
+      }
+
       // Try to load cached user first
       _user = await UserService.getCachedUser();
       notifyListeners();
@@ -58,6 +72,28 @@ class AuthProvider extends ChangeNotifier {
 
       await _loadOnboardingState();
       notifyListeners();
+    }
+  }
+
+  /// True only when the server explicitly rejects the token (expired / invalid
+  /// / session-invalidated). A network error returns false so offline users
+  /// stay signed in.
+  Future<bool> _tokenDefinitelyInvalid() async {
+    try {
+      final res = await ApiService.post(ApiConfig.isAuth, {});
+      if (res['success'] == true) return false;
+      if (res['tokenExpired'] == true ||
+          res['sessionInvalidated'] == true ||
+          res['invalidToken'] == true) {
+        return true;
+      }
+      final msg = (res['message'] ?? '').toString().toLowerCase();
+      return msg.contains('authoriz') ||
+          msg.contains('login again') ||
+          msg.contains('session expired') ||
+          msg.contains('invalid token');
+    } catch (_) {
+      return false; // network/other — don't punish offline users
     }
   }
 

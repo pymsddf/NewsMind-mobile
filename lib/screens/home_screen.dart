@@ -12,6 +12,7 @@ import 'profile_screen.dart';
 import '../widgets/history_panel.dart';
 import '../services/auth_service.dart';
 import '../services/notification_service.dart';
+import '../utils/title_format.dart';
 import 'todays_intelligence_screen.dart';
 import '../widgets/vector_button.dart';
 import '../widgets/newsmind_brand_title.dart';
@@ -270,11 +271,13 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
         item['content'],
         item['preview'],
       ]);
-      final topic = pickText([
+      // Prefer the original input topic; fall back to a markdown-stripped title
+      // so the topic box never shows raw "## …" from a history record.
+      final topic = cleanTitle(pickText([
         input['topic'],
         item['title'],
         data['title'],
-      ]);
+      ]));
       final parametersRaw = pickValue([
         output['parameters'],
         data['parameters'],
@@ -293,7 +296,8 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
 
       final article = ArticleModel(
         id: item['id']?.toString(),
-        title: pickText([item['title'], data['title'], 'Generated Article']),
+        title: cleanTitle(
+            pickText([item['title'], data['title'], 'Generated Article'])),
         content: content,
         parameters: parameters,
         wordCount: wordCount,
@@ -320,11 +324,13 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
         item['content'],
         item['preview'],
       ]);
-      final topic = pickText([
+      // Prefer the original input topic; fall back to a markdown-stripped title
+      // so the topic box never shows raw "## …" from a history record.
+      final topic = cleanTitle(pickText([
         input['topic'],
         item['title'],
         data['title'],
-      ]);
+      ]));
       final parametersRaw = pickValue([
         output['parameters'],
         data['parameters'],

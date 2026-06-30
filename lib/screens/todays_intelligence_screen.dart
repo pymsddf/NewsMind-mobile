@@ -4,6 +4,7 @@ import '../theme/intelligence_design_system.dart';
 import '../config/topics.dart';
 import '../models/news_article_model.dart';
 import '../services/news_service.dart';
+import '../widgets/skeleton.dart';
 import 'news_article_reader_screen.dart';
 
 /// Today's Intelligence — the home feed of real aggregated news for the user's
@@ -82,8 +83,8 @@ class TodaysIntelligenceScreenState extends State<TodaysIntelligenceScreen> {
           textColor: AppColors.redline,
           onPressed: () {
             if (!mounted) return;
-            setState(() =>
-                _articles.insert(index.clamp(0, _articles.length), a));
+            setState(
+                () => _articles.insert(index.clamp(0, _articles.length), a));
             NewsService.undismiss(a.id);
             NewsService.cacheFeed(_articles);
           },
@@ -102,13 +103,12 @@ class TodaysIntelligenceScreenState extends State<TodaysIntelligenceScreen> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.visibility_off_rounded, color: AppColors.redline, size: 20),
+          Icon(Icons.visibility_off_rounded,
+              color: AppColors.redline, size: 20),
           SizedBox(width: AppSpace.sm),
           Text('Dismiss',
               style: AppType.ui(
-                  size: 13,
-                  weight: FontWeight.w700,
-                  color: AppColors.redline)),
+                  size: 13, weight: FontWeight.w700, color: AppColors.redline)),
         ],
       ),
     );
@@ -127,8 +127,18 @@ class TodaysIntelligenceScreenState extends State<TodaysIntelligenceScreen> {
     if (diff.inHours < 24) return '${diff.inHours}h ago';
     if (diff.inDays < 7) return '${diff.inDays}d ago';
     const months = [
-      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec'
     ];
     return '${months[dt.month - 1]} ${dt.day}';
   }
@@ -147,11 +157,19 @@ class TodaysIntelligenceScreenState extends State<TodaysIntelligenceScreen> {
             SliverToBoxAdapter(child: _buildHeader()),
             if (_isLoading)
               SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: AppSpace.xxl * 1.5),
-                  child: Center(
-                    child: CircularProgressIndicator(
-                        color: AppColors.indigo, strokeWidth: 2),
+                child: Skeleton(
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(
+                        AppSpace.md, 0, AppSpace.md, AppSpace.xl),
+                    child: Column(
+                      children: List.generate(
+                        4,
+                        (_) => Padding(
+                          padding: EdgeInsets.only(bottom: AppSpace.md),
+                          child: _buildSkeletonCard(),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               )
@@ -221,6 +239,51 @@ class TodaysIntelligenceScreenState extends State<TodaysIntelligenceScreen> {
             'Real-time news across your chosen topics, refreshed through the day.',
             style: AppType.display(
                 size: 15, color: AppColors.graphite, height: 1.5),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// Placeholder card mirroring [_buildArticleCard]'s layout (image → badge +
+  /// meta → title lines → summary lines), shown while the feed loads.
+  Widget _buildSkeletonCard() {
+    return Container(
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(AppRadius.lg),
+        border: Border.all(color: AppColors.rule, width: 1),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AspectRatio(
+            aspectRatio: 16 / 9,
+            child: SkeletonBox(height: double.infinity, radius: 0),
+          ),
+          Padding(
+            padding: EdgeInsets.all(AppSpace.md),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    SkeletonBox(width: 64, height: 16, radius: AppRadius.sm),
+                    const Spacer(),
+                    SkeletonBox(width: 90, height: 10),
+                  ],
+                ),
+                SizedBox(height: AppSpace.md),
+                SkeletonBox(width: double.infinity, height: 18),
+                SizedBox(height: AppSpace.sm),
+                SkeletonBox(width: 220, height: 18),
+                SizedBox(height: AppSpace.md),
+                SkeletonBox(width: double.infinity, height: 12),
+                SizedBox(height: AppSpace.sm),
+                SkeletonBox(width: 180, height: 12),
+              ],
+            ),
           ),
         ],
       ),
@@ -348,7 +411,8 @@ class TodaysIntelligenceScreenState extends State<TodaysIntelligenceScreen> {
               borderRadius: BorderRadius.circular(AppRadius.lg),
               border: Border.all(color: AppColors.rule),
             ),
-            child: Icon(Icons.newspaper_rounded, color: AppColors.indigo, size: 30),
+            child: Icon(Icons.newspaper_rounded,
+                color: AppColors.indigo, size: 30),
           ),
           SizedBox(height: AppSpace.md),
           Text(
