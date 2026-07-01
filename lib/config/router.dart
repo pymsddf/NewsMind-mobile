@@ -12,7 +12,7 @@ import '../screens/notification_screen.dart';
 import '../screens/history_screen.dart';
 import '../screens/news_search_screen.dart';
 
-class NewsMindRouter {
+class NotizzRouter {
   static final GlobalKey<NavigatorState> _rootNavigatorKey =
       GlobalKey<NavigatorState>();
 

@@ -1,5 +1,5 @@
-import 'package:newsmind_mobile/config/api_config.dart';
-import 'package:newsmind_mobile/services/api_service.dart';
+import 'package:notizz_mobile/config/api_config.dart';
+import 'package:notizz_mobile/services/api_service.dart';
 
 class HistoryService {
   static Future<bool> submitFeedback(String historyId, String feedback) async {

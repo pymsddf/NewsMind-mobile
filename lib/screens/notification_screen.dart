@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../theme/intelligence_design_system.dart';
 import '../services/notification_service.dart';
-import '../widgets/newsmind_brand_title.dart';
+import '../widgets/notizz_brand_title.dart';
 import '../utils/error_text.dart';
 
 /// Notifications Screen - Alert Hierarchy
@@ -74,7 +74,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
       appBar: AppBar(
         backgroundColor: IntelligenceColors.obsidianBlack,
         elevation: 0,
-        title: NewsMindBrandTitle(),
+        title: NotizzBrandTitle(),
         actions: [
           IconButton(
             icon: Icon(

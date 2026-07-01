@@ -15,7 +15,7 @@ import '../services/notification_service.dart';
 import '../utils/title_format.dart';
 import 'todays_intelligence_screen.dart';
 import '../widgets/vector_button.dart';
-import '../widgets/newsmind_brand_title.dart';
+import '../widgets/notizz_brand_title.dart';
 import '../models/article_model.dart';
 import '../models/verification_model.dart';
 import '../models/bias_model.dart';
@@ -516,7 +516,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
           appBar: AppBar(
             backgroundColor: IntelligenceColors.obsidianBlack,
             elevation: 0,
-            title: NewsMindBrandTitle(),
+            title: NotizzBrandTitle(),
             actions: [
               IconButton(
                 icon: Icon(

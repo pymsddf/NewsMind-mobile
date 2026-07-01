@@ -6,7 +6,7 @@ import '../theme/app_theme.dart';
 import '../widgets/vector_card.dart';
 import '../services/news_service.dart';
 import 'fact_checking_screen.dart';
-import '../widgets/newsmind_brand_title.dart';
+import '../widgets/notizz_brand_title.dart';
 import '../utils/error_text.dart';
 
 class NewsDetailScreen extends StatefulWidget {
@@ -154,7 +154,7 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
     return Scaffold(
       backgroundColor: AppTheme.background,
       appBar: AppBar(
-        title: NewsMindBrandTitle(),
+        title: NotizzBrandTitle(),
         backgroundColor: AppTheme.surface.withValues(alpha: 0.8),
         elevation: 0,
         iconTheme: IconThemeData(color: AppTheme.textPrimary),

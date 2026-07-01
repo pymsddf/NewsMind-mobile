@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'intelligence_design_system.dart';
 
 // ============================================================================
-// NEWSMIND AI — "The Verdict Desk" theme
+// NOTIZZ AI — "The Verdict Desk" theme
 // Light-first editorial identity built on bundled fonts (Newsreader,
 // Schibsted Grotesk, IBM Plex Mono). See intelligence_design_system.dart.
 // ============================================================================

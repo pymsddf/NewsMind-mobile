@@ -5,7 +5,7 @@ import '../theme/intelligence_design_system.dart';
 import '../config/topics.dart';
 import '../providers/auth_provider.dart';
 import '../services/news_service.dart';
-import '../widgets/newsmind_brand_title.dart';
+import '../widgets/notizz_brand_title.dart';
 import '../utils/upgrade_helper.dart';
 
 /// Topic picker. Two modes:
@@ -145,7 +145,7 @@ class _OnboardingTopicsScreenState extends State<OnboardingTopicsScreen> {
                             color: AppColors.ink, size: 24),
                       ),
                     ),
-                  NewsMindBrandTitle(),
+                  NotizzBrandTitle(),
                 ],
               ),
             ),

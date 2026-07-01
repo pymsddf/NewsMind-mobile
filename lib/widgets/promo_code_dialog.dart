@@ -95,7 +95,7 @@ class _PromoCodeDialogState extends State<_PromoCodeDialog> {
           SizedBox(height: AppSpace.md),
           SharpInput(
             label: 'Promo code',
-            hint: 'e.g. NEWSMIND-PRO',
+            hint: 'e.g. NOTIZZ-PRO',
             controller: _controller,
             enabled: !_loading,
           ),

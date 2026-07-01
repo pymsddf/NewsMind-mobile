@@ -1,4 +1,4 @@
-package com.example.newsmind_mobile
+package com.example.notizz_mobile
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -12,7 +12,7 @@ import '../services/verification_service.dart';
 import '../services/bias_service.dart';
 import '../utils/upgrade_helper.dart';
 import '../utils/error_text.dart';
-import '../widgets/newsmind_brand_title.dart';
+import '../widgets/notizz_brand_title.dart';
 
 class NewsGenerationScreen extends StatefulWidget {
   final String? initialTopic;
@@ -285,7 +285,7 @@ class NewsGenerationScreenState extends State<NewsGenerationScreen> {
           if (widget.showHeader)
             const SliverAppBar(
               floating: true,
-              title: NewsMindBrandTitle(),
+              title: NotizzBrandTitle(),
               automaticallyImplyLeading: false,
             ),
 

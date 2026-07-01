@@ -12,7 +12,7 @@ import '../widgets/news_generation_widgets.dart';
 import '../utils/share_util.dart';
 import '../utils/upgrade_helper.dart';
 import '../utils/error_text.dart';
-import '../widgets/newsmind_brand_title.dart';
+import '../widgets/notizz_brand_title.dart';
 
 /// Bias Detection — the analyst's grid: a lean spectrum, sensationalism level,
 /// credibility dial and a per-dimension breakdown.
@@ -158,7 +158,7 @@ class BiasDetectionScreenState extends State<BiasDetectionScreen> {
               backgroundColor: AppColors.paper,
               surfaceTintColor: Colors.transparent,
               elevation: 0,
-              title: NewsMindBrandTitle(),
+              title: NotizzBrandTitle(),
               actions: [
                 if (_result != null)
                   IconButton(

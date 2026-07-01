@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 // ============================================================================
-// NEWSMIND AI — "NEWSPRINT" DESIGN SYSTEM (2026)
+// NOTIZZ AI — "NEWSPRINT" DESIGN SYSTEM (2026)
 // ============================================================================
-// Matches the NewsMind AI web app theme (frontend/styles/tailwind.css):
+// Matches the Notizz AI web app theme (frontend/styles/tailwind.css):
 // ink on warm newsprint paper, black is the brand, press-red is the one loud
 // accent, editorial ink-blue for secondary marks. Light-first, built for
 // reading. Dark mode mirrors the web "Late Edition" palette.

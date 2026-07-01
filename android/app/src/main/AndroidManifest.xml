@@ -3,7 +3,7 @@
          it separately; without this here, release builds cannot reach the API). -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:label="NewsMind AI"
+        android:label="Notizz AI"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

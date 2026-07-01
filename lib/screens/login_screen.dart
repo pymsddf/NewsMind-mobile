@@ -6,7 +6,7 @@ import '../providers/auth_provider.dart';
 import '../theme/intelligence_design_system.dart';
 import '../widgets/sharp_input.dart';
 import '../widgets/vector_button.dart';
-import '../widgets/newsmind_brand_title.dart';
+import '../widgets/notizz_brand_title.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import '../config/api_config.dart';
@@ -144,7 +144,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 // Header
                 const SizedBox(height: IntelligenceSpacing.compact),
 
-                NewsMindBrandTitle(),
+                NotizzBrandTitle(),
                 // Heavier top spacer drops the "Welcome back" block and form
                 // a little lower than the other gaps.
                 const Spacer(flex: 2),
@@ -164,7 +164,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 // Subtitle
                 Text(
-                  'Sign in to your NewsMind AI account.',
+                  'Sign in to your Notizz AI account.',
                   style: AppType.display(
                     size: 15,
                     color: AppColors.graphite,

@@ -7,7 +7,7 @@ import '../theme/app_theme.dart';
 import '../theme/intelligence_design_system.dart';
 import '../widgets/sharp_input.dart';
 import '../widgets/vector_button.dart';
-import '../widgets/newsmind_brand_title.dart';
+import '../widgets/notizz_brand_title.dart';
 
 /// Email OTP verification — the step between signing up and entering the app.
 /// The user lands here straight after registering; a 6-digit code was emailed.
@@ -70,7 +70,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
     if (!mounted) return;
 
     if (response['success'] == true) {
-      _toast('Email verified. Welcome to NewsMind.', success: true);
+      _toast('Email verified. Welcome to Notizz.', success: true);
       // Routing redirect sends a verified user to onboarding or home.
       context.go('/home');
     } else {
@@ -116,7 +116,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: IntelligenceSpacing.compact),
-                    const NewsMindBrandTitle(),
+                    const NotizzBrandTitle(),
                     SizedBox(height: IntelligenceSpacing.spacious),
 
                     // Title — editorial masthead serif, matching login/register

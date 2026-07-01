@@ -5,7 +5,7 @@ import '../services/user_service.dart';
 import '../providers/auth_provider.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import '../widgets/newsmind_brand_title.dart';
+import '../widgets/notizz_brand_title.dart';
 import '../utils/error_text.dart';
 
 class HistoryScreen extends StatefulWidget {
@@ -93,7 +93,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   backgroundColor: AppColors.paper,
                   surfaceTintColor: Colors.transparent,
                   elevation: 0,
-                  title: NewsMindBrandTitle(),
+                  title: NotizzBrandTitle(),
                   actions: [
                     IconButton(
                       icon: Icon(Icons.refresh_rounded, color: AppColors.graphite),

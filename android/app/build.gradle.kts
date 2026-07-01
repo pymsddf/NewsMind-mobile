@@ -15,7 +15,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace = "com.example.newsmind_mobile"
+    namespace = "com.example.notizz_mobile"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -43,7 +43,7 @@ android {
         // package + where `.MainActivity` resolves. It's intentionally left as
         // the original value so the Kotlin entrypoint doesn't need moving;
         // Google Play and Google Sign-In key off this applicationId.)
-        applicationId = "com.ddfrl.newsmind"
+        applicationId = "com.ddfrl.notizz"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion

@@ -249,7 +249,7 @@ class MockApiService {
       'title': topic,
       'content': '''# $topic
 
-**By NewsMind AI Reporter**
+**By Notizz AI Reporter**
 
 This is a mock generated article about $topic for testing purposes.
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
 import '../theme/app_theme.dart';
 import '../widgets/vector_button.dart';
-import '../widgets/newsmind_brand_title.dart';
+import '../widgets/notizz_brand_title.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   ForgotPasswordScreen({super.key});
@@ -86,7 +86,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           icon: Icon(Icons.arrow_back_ios_rounded),
           onPressed: () => Navigator.pop(context),
         ),
-        title: NewsMindBrandTitle(),
+        title: NotizzBrandTitle(),
       ),
       body: SafeArea(
         child: SingleChildScrollView(

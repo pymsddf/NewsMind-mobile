@@ -56,6 +56,7 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: AppColors.paper,
       body: Center(
@@ -72,7 +73,10 @@ class _SplashScreenState extends State<SplashScreen>
                     child: SizedBox(
                       width: 96,
                       height: 96,
-                      child: Image.asset('assets/logo.png', fit: BoxFit.contain),
+                      child: Image.asset(
+                        isDark ? 'assets/light.png' : 'assets/logo.png',
+                        fit: BoxFit.contain,
+                      ),
                     ),
                   ),
                 ),
@@ -80,7 +84,7 @@ class _SplashScreenState extends State<SplashScreen>
                 Opacity(
                   opacity: _fade.value,
                   // Masthead wordmark — "AI" set in press-red italic to match
-                  // NewsMindBrandTitle (and the web app). FittedBox guarantees
+                  // NotizzBrandTitle (and the web app). FittedBox guarantees
                   // it scales down rather than overflowing on narrow screens.
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: AppSpace.lg),
@@ -90,7 +94,7 @@ class _SplashScreenState extends State<SplashScreen>
                         TextSpan(
                           children: [
                             TextSpan(
-                              text: 'NewsMind ',
+                              text: 'Notizz ',
                               style: AppType.display(
                                   size: 40,
                                   weight: FontWeight.w700,

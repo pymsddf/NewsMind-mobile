@@ -5,7 +5,7 @@ import '../theme/intelligence_design_system.dart';
 import '../config/topics.dart';
 import '../models/news_article_model.dart';
 import '../services/news_service.dart';
-import '../widgets/newsmind_brand_title.dart';
+import '../widgets/notizz_brand_title.dart';
 import '../widgets/markdown_text.dart';
 
 /// In-app reader for an aggregated news article — opened when a feed/search card
@@ -69,7 +69,7 @@ class _NewsArticleReaderScreenState extends State<NewsArticleReaderScreen> {
           icon: Icon(Icons.arrow_back_rounded, color: AppColors.ink),
           onPressed: () => Navigator.pop(context),
         ),
-        title: NewsMindBrandTitle(),
+        title: NotizzBrandTitle(),
         actions: [
           IconButton(
             icon: Icon(Icons.ios_share_rounded, color: AppColors.ink),

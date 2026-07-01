@@ -230,18 +230,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
   }
 
-  Future<void> _updateSecurity(String setting, dynamic value) async {
-    final response = await UserService.updateSecurity(setting, value);
-    if (!mounted) return;
-
-    if (response['success'] == true) {
-      await _refreshUser();
-      _showSnack('Settings updated!', isError: false);
-    } else {
-      _showSnack(response['message'] ?? 'Failed to update settings');
-    }
-  }
-
   Future<void> _handleLogout() async {
     showDialog(
       context: context,
@@ -548,14 +536,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
               onManage: () => _handleUpgrade(context, user),
               onUpgrade: () => _handleUpgrade(context, user),
               formatDate: _formatDate,
-            ),
-            SizedBox(height: IntelligenceSpacing.standard),
-
-            // Security Settings
-            SecurityCard(
-              user: user,
-              onToggleLoginNotifications: (val) =>
-                  _updateSecurity('loginNotifications', val),
             ),
             SizedBox(height: IntelligenceSpacing.standard),
 

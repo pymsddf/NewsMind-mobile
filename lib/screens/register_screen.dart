@@ -6,7 +6,7 @@ import '../providers/auth_provider.dart';
 import '../theme/intelligence_design_system.dart';
 import '../widgets/sharp_input.dart';
 import '../widgets/vector_button.dart';
-import '../widgets/newsmind_brand_title.dart';
+import '../widgets/notizz_brand_title.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import '../config/api_config.dart';
@@ -187,7 +187,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: IntelligenceSpacing.compact),
-                      const NewsMindBrandTitle(),
+                      const NotizzBrandTitle(),
                       SizedBox(height: IntelligenceSpacing.spacious),
 
                       // Title — editorial masthead serif, matching login

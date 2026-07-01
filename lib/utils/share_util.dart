@@ -44,7 +44,7 @@ class ShareUtil {
             'https://www.facebook.com/sharer/sharer.php?u=${Uri.encodeComponent(_siteUrl)}&quote=${Uri.encodeComponent(text)}');
         break;
       case SharePlatform.more:
-        shareText(text, subject: 'NewsMind AI Verification Result');
+        shareText(text, subject: 'Notizz AI Verification Result');
         break;
     }
   }
@@ -59,15 +59,15 @@ class ShareUtil {
     final int confPct = conf <= 10 ? (conf * 10) : conf; // 1–10 score → %
     final String summary = (result.summary ?? "").toString();
 
-    return "NewsMind AI Verification\n\n"
+    return "Notizz AI Verification\n\n"
         "Verdict: $verdict  ($confPct% confidence)\n"
         "${summary.isNotEmpty ? "\n$summary\n" : ""}"
-        "\nChecked with NewsMind AI";
+        "\nChecked with Notizz AI";
   }
 
   static void shareVerification(dynamic result) {
     shareText(_verificationText(result),
-        subject: "NewsMind AI Verification Result");
+        subject: "Notizz AI Verification Result");
   }
 
   static void shareBiasAnalysis(dynamic result) {
@@ -75,12 +75,12 @@ class ShareUtil {
     final String level = result.overallBias.level;
     final int score = result.overallBias.score;
 
-    final String text = "NewsMind AI Bias Analysis\n\n"
+    final String text = "Notizz AI Bias Analysis\n\n"
         "Overall Bias: $level\n"
         "Bias Score: $score/100\n\n"
-        "Check more at NewsMind AI!";
+        "Check more at Notizz AI!";
 
-    shareText(text, subject: "NewsMind AI Bias Analysis Result");
+    shareText(text, subject: "Notizz AI Bias Analysis Result");
   }
 
   static void shareArticle(dynamic article) {
@@ -89,10 +89,10 @@ class ShareUtil {
     final String preview =
         content.length > 200 ? "${content.substring(0, 200)}..." : content;
 
-    final String text = "NewsMind AI Generated Article\n\n"
+    final String text = "Notizz AI Generated Article\n\n"
         "Title: $title\n\n"
         "$preview\n\n"
-        "Read more in the NewsMind App!";
+        "Read more in the Notizz App!";
 
     shareText(text, subject: title);
   }

@@ -21,25 +21,25 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider.value(value: themeController),
       ],
-      child: NewsMindApp(),
+      child: NotizzApp(),
     ),
   );
 }
 
-class NewsMindApp extends StatefulWidget {
-  NewsMindApp({super.key});
+class NotizzApp extends StatefulWidget {
+  NotizzApp({super.key});
 
   @override
-  State<NewsMindApp> createState() => _NewsMindAppState();
+  State<NotizzApp> createState() => _NotizzAppState();
 }
 
-class _NewsMindAppState extends State<NewsMindApp> {
+class _NotizzAppState extends State<NotizzApp> {
   late final GoRouter _router;
 
   @override
   void initState() {
     super.initState();
-    _router = NewsMindRouter.createRouter(context.read<AuthProvider>());
+    _router = NotizzRouter.createRouter(context.read<AuthProvider>());
   }
 
   @override
@@ -59,7 +59,7 @@ class _NewsMindAppState extends State<NewsMindApp> {
     ));
 
     return MaterialApp.router(
-      title: 'NewsMind AI',
+      title: 'Notizz AI',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.theme,
       routerConfig: _router,
